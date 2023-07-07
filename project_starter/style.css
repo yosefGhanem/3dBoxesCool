@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fafafa;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.magic {
+  background-color: #f9ca24;
+  color: white;
+  font-family: 'Poppins',sans-serif;
+  border: 0;
+  border-radius: 3px;
+  font-size: 16px;
+  /* 12 top and bottom, 20 left and right */
+  padding: 12px 20px ;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  letter-spacing: 1px;
+  /* x-offset is 0 , y-offset is 3 */
+  box-shadow: 0 3px rgba(249, 202, 36, 0.5);
+  z-index: 100;
+}
+
+.magic:focus {
+  outline: none;
+}
+
+.magic:active{
+  box-shadow: none;
+  /* move it along y axis just 2 px move it down cuz +2px*/
+  transform: translateY(2px);
+}
+
+/* boxes container */
+.boxes {
+  display: flex;
+  height: 500px;
+  width: 500px;
+  flex-wrap: wrap;
+  /* remaining space is around each element */
+  justify-content: space-around;
+  position: relative;
+  transition: 0.4s ease;
+}
+
+.box {
+  background-image: url("https://media0.giphy.com/media/PHkIfAw1FUUms/giphy.gif");
+  background-repeat: no-repeat;
+  /* set it the same size as the intial boxes */
+  /* 500px on x 500px on y */
+  background-size: 500px 500px;
+  position: relative;/*cuz we gonna use before and after*/
+  height: 125px;
+  width: 125px;
+  transition: 0.4s ease;
+}
+
+/* Ultimately : in the end */
+.boxes.big {
+  /* extend the width and height to 600px*/
+  width: 600px;
+  height: 600px;
+}
+
+/* .boxes.big class for each individual box */
+.boxes.big .box {
+  transform: rotateZ(360deg);
+  /* when this happens transition nicely to boxes*/
+}
+
+
+.box::after {
+  content: '';
+  /*
+  content: 'Hello';
+  Think of it like an invisible element
+  */
+  background-color: #f6e58d;
+  position: absolute;
+  top: 8px;
+  right: -15px;
+  height: 100%;
+  width: 15px;
+  transform: skewY(45deg);/*Nice trick skewY(45deg) effect*/
+}
+
+.box::before {
+  content: '';
+  background-color: #f6e58d;
+  position: absolute;
+  bottom: -15px;
+  left: 8px;
+  height: 15px;
+  width: 100%;
+  transform: skewX(45deg);/*SkewX cuz it's horizontal*/
+}
+
